@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { getTestRule } = require('jest-preset-stylelint');
 const { lint } = require('stylelint');
+const declarationStrictValuePlugin = require('./src/index');
 
-global.testRule = getTestRule({ plugins: ['./src/index.ts'] });
+const plugins = [declarationStrictValuePlugin];
+
+global.testRule = getTestRule({ plugins });
 
 global.testCustomAutoFixMessage = testCustomAutoFixMessage;
 
@@ -19,7 +22,7 @@ function testCustomAutoFixMessage({ ruleName, config, reject, fix }) {
             fix,
             code,
             config: {
-              plugins: ['./src/index.ts'],
+              plugins,
               rules: {
                 [ruleName]: config,
               },

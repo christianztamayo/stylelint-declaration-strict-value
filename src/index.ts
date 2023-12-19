@@ -24,7 +24,7 @@ import defaults, {
   RegExpString,
 } from './defaults';
 
-const { utils } = stylelint;
+const { createPlugin, utils } = stylelint;
 const messages = utils.ruleMessages(ruleName, {
   expected,
   customExpected,
@@ -490,10 +490,7 @@ ruleFunction.primaryOptionArray = true;
 ruleFunction.ruleName = ruleName;
 ruleFunction.messages = messages;
 
-const declarationStrictValuePlugin = stylelint.createPlugin(
-  ruleName,
-  ruleFunction
-);
+const declarationStrictValuePlugin = createPlugin(ruleName, ruleFunction);
 
 export default declarationStrictValuePlugin;
 export { ruleName, messages };
